@@ -15,10 +15,6 @@
 #define PIN_DRA_RX  22
 #define PIN_DRA_TX  23
 
-#define RedLedPin   7
-#define GrnLedPin   5
-#define YlwLedPin   6
-
 #define RedLedON    digitalWrite(RedLedPin, HIGH);
 #define RedLedOFF   digitalWrite(RedLedPin, LOW);
 #define GrnLedON    digitalWrite(GrnLedPin, HIGH);
@@ -98,8 +94,8 @@ void setup() {
   pinMode(BattPin, INPUT);
   pinMode(PIN_DRA_TX,INPUT);
 
-  pinMode(RedLedPin, OUTPUT);     // red LED - turn on once when APRS is powered on
-  pinMode(YlwLedPin, OUTPUT);     // yellow LED - turn on when GPS fix, turn off when no GPS fix
+  pinMode(RedLedPin, OUTPUT);    // red LED - turn on once when APRS is powered on
+  pinMode(YlwLedPin, OUTPUT);    // yellow LED - turn on when GPS fix, turn off when no GPS fix
   pinMode(GrnLedPin, OUTPUT);    // green LED - turn on when transmitting, turn off when not
 
   RedLedON;
@@ -132,6 +128,12 @@ void setup() {
 
   bmp.begin();
  
+  // Turn on yellow and green LEDs for 3 seconds to confirm they are wired correctly
+  YlwLedON;
+  GrnLedON;
+  sleepSeconds(3);
+  YlwLedOFF;
+  GrnLedOFF;
 }
 
 void loop() {
