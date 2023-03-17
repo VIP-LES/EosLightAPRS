@@ -6,6 +6,11 @@
 #include <Adafruit_BMP085.h>//https://github.com/adafruit/Adafruit-BMP085-Library
 #include <avr/wdt.h>
 #include "aprs-config.h"
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
 
 #define RfPDPin     19
 #define GpsVccPin   18
@@ -99,6 +104,12 @@ void setup() {
   pinMode(GrnLedPin, OUTPUT);    // green LED - turn on when transmitting, turn off when not
 
   RedLedON;
+  // Turn on yellow and green LEDs for 3 seconds to confirm they are wired correctly
+  YlwLedON;
+  GrnLedON;
+  delay(3000);
+  YlwLedOFF;
+  GrnLedOFF;
 
   RfOFF;
   GpsOFF;
@@ -128,12 +139,7 @@ void setup() {
 
   bmp.begin();
  
-  // Turn on yellow and green LEDs for 3 seconds to confirm they are wired correctly
-  YlwLedON;
-  GrnLedON;
-  sleepSeconds(3);
-  YlwLedOFF;
-  GrnLedOFF;
+
 }
 
 void loop() {
