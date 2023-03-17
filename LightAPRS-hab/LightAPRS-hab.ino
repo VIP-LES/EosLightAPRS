@@ -6,11 +6,6 @@
 #include <Adafruit_BMP085.h>//https://github.com/adafruit/Adafruit-BMP085-Library
 #include <avr/wdt.h>
 #include "aprs-config.h"
-#ifdef _WIN32
-    #include <windows.h>
-#else
-    #include <unistd.h>
-#endif
 
 #define RfPDPin     19
 #define GpsVccPin   18
