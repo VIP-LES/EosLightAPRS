@@ -106,7 +106,7 @@ void setup() {
   APRS_useAlternateSymbolTable(alternateSymbolTable); 
   APRS_setSymbol(Symbol);
   //increase following value (for example to 500UL) if you experience packet loss/decode issues. 
-  APRS_setPreamble(350UL);  
+  APRS_setPreamble(500UL);  
   APRS_setPathSize(pathSize);
 
   configDra818(Frequency);
