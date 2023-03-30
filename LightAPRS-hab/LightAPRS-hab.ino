@@ -40,7 +40,7 @@ bool alternateSymbolTable = ALT_SYMBOL;
 char Frequency[9]=FREQUENCY; 
 
 char comment[50] = "http://www.lightaprs.com"; // Max 50 char
-char StatusMessage[50] = "LightAPRS by TA9OHC & TA2MUN"; 
+char StatusMessage[50] = "VIP-LES Power Up"; 
 //*****************************************************************************
 
 
@@ -158,14 +158,10 @@ void loop() {
             APRS_setPathSize(pathSize);
         }
       
-      //send status message every 60 minutes
-      if(gps.time.minute() == 30){               
-        sendStatus();       
-      } else {
 
-         sendLocation();
+      sendLocation();
 
-      }
+      
 
       freeMem();
       Serial.flush();
