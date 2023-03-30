@@ -39,7 +39,6 @@ bool alternateSymbolTable = ALT_SYMBOL;
 
 char Frequency[9]=FREQUENCY; 
 
-char comment[50] = "http://www.lightaprs.com"; // Max 50 char
 char StatusMessage[50] = "VIP-LES Power Up"; 
 //*****************************************************************************
 
@@ -47,7 +46,7 @@ char StatusMessage[50] = "VIP-LES Power Up";
 unsigned int   BeaconWait=60;  //seconds sleep for next beacon (TX).
 unsigned int   BattWait=60;    //seconds sleep if super capacitors/batteries are below BattMin (important if power source is solar panel) 
 float BattMin=4.5;        // min Volts to wake up.
-float DraHighVolt=8.0;    // min Volts for radio module (DRA818V) to transmit (TX) 1 Watt, below this transmit 0.5 Watt. You don't need 1 watt on a balloon. Do not change this.
+float DraHighVolt=5;    // min Volts for radio module (DRA818V) to transmit (TX) 1 Watt, below this transmit 0.5 Watt. Allegedly unneeded on a balloon, but we're trying to be extra safe.
 //float GpsMinVolt=4.0; //min Volts for GPS to wake up. (important if power source is solar panel) 
 
 boolean aliveStatus = true; //for tx status message on first wake-up just once.
@@ -319,9 +318,7 @@ void updateTelemetry() {
   telemetry_buff[49] = ' ';
   sprintf(telemetry_buff + 50, "%02d", gps.satellites.isValid() ? (int)gps.satellites.value() : 0);
   telemetry_buff[52] = 'S';
-  telemetry_buff[53] = ' ';
-  sprintf(telemetry_buff + 54, "%s", comment);
-  
+
 
 #if defined(DEVMODE)
   Serial.println(telemetry_buff);
@@ -332,7 +329,7 @@ void updateTelemetry() {
 void sendLocation() {
 
 #if defined(DEVMODE)
-      Serial.println(F("Location sending with comment"));
+      Serial.println(F("Location sending"));
 #endif
   if ((readBatt() > DraHighVolt) && (readBatt() < 10)) RfPwrHigh; //DRA Power 1 Watt
   else RfPwrLow; //DRA Power 0.5 Watt
@@ -361,7 +358,7 @@ void sendLocation() {
   RfPttOFF;
   RfOFF;
 #if defined(DEVMODE)
-  Serial.println(F("Location sent with comment"));
+  Serial.println(F("Location sent"));
 #endif
 
   TxCount++;
