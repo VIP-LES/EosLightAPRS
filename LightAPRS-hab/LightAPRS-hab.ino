@@ -201,7 +201,6 @@ void loop() {
 #endif
         YlwLedOFF;
       }
-      YlwLedOFF;
     } 
   } else {
 
