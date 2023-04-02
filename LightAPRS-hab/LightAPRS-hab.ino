@@ -318,6 +318,7 @@ void updateTelemetry() {
   telemetry_buff[49] = ' ';
   sprintf(telemetry_buff + 50, "%02d", gps.satellites.isValid() ? (int)gps.satellites.value() : 0);
   telemetry_buff[52] = 'S';
+  telemetry_buff[53] = '\0';
 
 
 #if defined(DEVMODE)
