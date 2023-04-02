@@ -201,7 +201,9 @@ void loop() {
 #endif
         YlwLedOFF;
       }
-    } 
+    } else {
+      YlwLedOFF;
+    }
   } else {
 
     sleepSeconds(BattWait);
