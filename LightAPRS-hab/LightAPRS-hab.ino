@@ -15,6 +15,13 @@
 #define PIN_DRA_RX  22
 #define PIN_DRA_TX  23
 
+#define RedLedON    digitalWrite(RedLedPin, HIGH);
+#define RedLedOFF   digitalWrite(RedLedPin, LOW);
+#define GrnLedON    digitalWrite(GrnLedPin, HIGH);
+#define GrnLedOFF   digitalWrite(GrnLedPin, LOW);
+#define YlwLedON    digitalWrite(YlwLedPin, HIGH);
+#define YlwLedOFF   digitalWrite(YlwLedPin, LOW);
+
 #define ADC_REFERENCE REF_3V3
 #define OPEN_SQUELCH false
 
@@ -28,6 +35,7 @@
 #define RfPttOFF      digitalWrite(RfPttPin, LOW)
 #define AprsPinInput  pinMode(12,INPUT);pinMode(13,INPUT);pinMode(14,INPUT);pinMode(15,INPUT)
 #define AprsPinOutput pinMode(12,OUTPUT);pinMode(13,OUTPUT);pinMode(14,OUTPUT);pinMode(15,OUTPUT)
+
 
 //#define DEVMODE // Development mode. Uncomment to enable for debugging.
 
@@ -85,6 +93,18 @@ void setup() {
   pinMode(BattPin, INPUT);
   pinMode(PIN_DRA_TX,INPUT);
 
+  pinMode(RedLedPin, OUTPUT);    // red LED - turn on once when APRS is powered on
+  pinMode(YlwLedPin, OUTPUT);    // yellow LED - turn on when GPS fix, turn off when no GPS fix
+  pinMode(GrnLedPin, OUTPUT);    // green LED - turn on when transmitting, turn off when not
+
+  RedLedON;
+  // Turn on yellow and green LEDs for 3 seconds to confirm they are wired correctly
+  YlwLedON;
+  GrnLedON;
+  delay(3000);
+  YlwLedOFF;
+  GrnLedOFF;
+
   RfOFF;
   GpsOFF;
   RfPwrLow;
@@ -113,6 +133,7 @@ void setup() {
 
   bmp.begin();
  
+
 }
 
 void loop() {
@@ -149,18 +170,19 @@ void loop() {
       setGPS_PowerSaveMode();
       //GpsFirstFix=true;
 
+      YlwLedON;
+
       if(autoPathSizeHighAlt && gps.altitude.feet()>3000){
             //force to use high altitude settings (WIDE2-n)
             APRS_setPathSize(1);
         } else {
-            //use defualt settings  
+            //use default settings  
             APRS_setPathSize(pathSize);
         }
-      
 
+      GrnLedON;
       sendLocation();
-
-      
+      GrnLedOFF;
 
       freeMem();
       Serial.flush();
@@ -170,8 +192,11 @@ void loop() {
 #if defined(DEVMODE)
       Serial.println(F("Not enough sattelites"));
 #endif
+        YlwLedOFF;
       }
-    } 
+    } else {
+      YlwLedOFF;
+    }
   } else {
 
     sleepSeconds(BattWait);
