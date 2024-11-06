@@ -93,9 +93,9 @@ void setup() {
   pinMode(BattPin, INPUT);
   pinMode(PIN_DRA_TX,INPUT);
 
-  pinMode(RedLedPin, OUTPUT);    // red LED - turn on once when APRS is powered on
+  pinMode(RedLedPin, OUTPUT);    // red LED - turn on once when APRS is powered on (AKA ORANGE LED)
   pinMode(YlwLedPin, OUTPUT);    // yellow LED - turn on when GPS fix, turn off when no GPS fix
-  pinMode(GrnLedPin, OUTPUT);    // green LED - turn on when transmitting, turn off when not
+  pinMode(GrnLedPin, OUTPUT);    // green LED - turn on when transmitting, turn off when not (NOT USED ON APRS)
 
   RedLedON;
   // Turn on yellow and green LEDs for 3 seconds to confirm they are wired correctly
@@ -135,6 +135,36 @@ void setup() {
  
 
 }
+// TODO: THESE ARE JUST TESTING VALUES
+// NEED TO CHANGE THESE FOR ACTUAL LAUNCH
+// void adjustBeaconWaitBasedOnAltitude() {
+//   // Set shorter beacon wait times for lower altitudes
+//   if (gps.altitude.feet() < 1000) {
+//     BeaconWait = 5; // 5 seconds for very low altitudes
+//   } else if (gps.altitude.feet() < 3000) {
+//     BeaconWait = 10; // 10 seconds for medium altitudes
+//   } else {
+//     BeaconWait = 35; // 35 seconds for high altitudes
+//   }
+// }
+
+
+// more sensible wait times?, can change if needed:
+void adjustBeaconWaitBasedOnAltitude() {
+  // Set appropriate beacon wait times based on altitude to avoid excessive channel congestion
+  if (gps.altitude.feet() < 3000) {
+    BeaconWait = 10; // 10 seconds for very low altitudes
+  } else if (gps.altitude.feet() < 15000) {
+    BeaconWait = 45; // 45 seconds for moderate altitudes (5,000 - 15,000 feet)
+  } else if (gps.altitude.feet() < 30000) {
+    BeaconWait = 60; // 60 seconds for higher mid-altitudes (15,000 - 30,000 feet)
+  } else {
+    BeaconWait = 90; // 90 seconds for high altitudes above 30,000 feet
+  }
+}
+
+
+
 
 void loop() {
    wdt_reset();
@@ -172,7 +202,7 @@ void loop() {
 
       YlwLedON;
 
-      if(autoPathSizeHighAlt && gps.altitude.feet()>3000){
+      if(autoPathSizeHighAlt && gps.altitude.feet() > 3000){
             //force to use high altitude settings (WIDE2-n)
             APRS_setPathSize(1);
         } else {
@@ -184,13 +214,16 @@ void loop() {
       sendLocation();
       GrnLedOFF;
 
+      // Adjust the beacon interval based on altitude
+      adjustBeaconWaitBasedOnAltitude();
+
       freeMem();
       Serial.flush();
       sleepSeconds(BeaconWait);
 
       } else {
 #if defined(DEVMODE)
-      Serial.println(F("Not enough sattelites"));
+      Serial.println(F("Not enough satellites"));
 #endif
         YlwLedOFF;
       }
@@ -198,12 +231,10 @@ void loop() {
       YlwLedOFF;
     }
   } else {
-
     sleepSeconds(BattWait);
-    
   }
-  
 }
+
 
 void aprs_msg_callback(struct AX25Msg *msg) {
   //do not remove this function, necessary for LibAPRS
