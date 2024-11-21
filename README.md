@@ -54,14 +54,14 @@ The CH340 chip is used by a number of Arduino compatible boards (and by LightAPR
 Don't worry, it's really easy. Just download the following driver from sparkfun.com and install it.
 
 - [Windows](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER.EXE)
-- [Mac](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP)
+- [Mac](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP), if on an ARM based mac then use [this](https://www.wch-ic.com/downloads/CH341SER_MAC_ZIP.html).
 - [Linux](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_LINUX.ZIP)
 
 <img src="images/ch340-driver-install.png" width="500">
 
 ### 2.Install Arduino IDE
 
-Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If you have already installed Arduino, please check for updates. Its version should be v1.8.7 or newer.
+Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If you have already installed Arduino, please check for updates. Its version should be v1.8.7 or newer (The newer 2.x.x versions also work, no need to use the legacy 1.x.x versions).
 
 ### 3.Install MightyCore
 
@@ -91,8 +91,8 @@ Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If 
 
 You are almost ready to programme LightAPRS Tracker :)
 
-- First download the repository to your computer using the green "[clone or download](https://github.com/lightaprs/LightAPRS-1.0/archive/master.zip)" button.
-- There are more than one Arduino projects optimized for different use cases. For example if you are planning to use LightAPRS tracker for a pico balloon project, then use "[LightAPRS-pico-balloon](LightAPRS-pico-balloon)" folder, for a hab (high altitude balloon)/weather balloon project, then use "[LightAPRS-hab](LightAPRS-hab)" folder.
+- First download the repository to your computer using the green "[clone or download](https://github.com/VIP-LES/EosLightAPRS/archive/master.zip)" button.
+- We will use the items in the "LightAPRS-hab" folder, not the "LightAPRS-pico-balloon" or "LightAPRS-vehicle" folders. 
 - You will notice some folders in the "libraries" folder. You have to copy these folders (libraries) into your Arduino libraries folder on your computer. Path to your Arduino libraries:
 - **Windows** : This PC\Documents\Arduino\libraries\
 - **Mac** : /Users/\<username\>/Documents/Arduino/libraries/ <img src="images/lightaprs-library-copy.png" width="600">  
@@ -108,7 +108,7 @@ You are almost ready to programme LightAPRS Tracker :)
 
 - First attach an antenna (at least 50cm monopole wire) to your tracker. Radio module may be damaged if operated without attaching an antenna, since power has nowhere to go.
 - Connect LightAPRS Tracker to your computer with a micro USB cable.
-- If you have successfully installed the CH340G driver explained in the first step, you should see a COM port under **Tools->Port** menu item. Select that port.
+- If you have successfully installed the CH340G driver explained in the first step, you should see a COM port under **Tools->Port** menu item. Select that port (if you don't see a port but have the driver installed, make sure the APRS is connected with a cable that supports both data & power, not just power).
 
 <img src="images/lightaprs-arduino-port-select.png" width="600">  
 
