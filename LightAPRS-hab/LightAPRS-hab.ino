@@ -135,19 +135,6 @@ void setup() {
  
 
 }
-// TODO: THESE ARE JUST TESTING VALUES
-// NEED TO CHANGE THESE FOR ACTUAL LAUNCH
-// void adjustBeaconWaitBasedOnAltitude() {
-//   // Set shorter beacon wait times for lower altitudes
-//   if (gps.altitude.feet() < 1000) {
-//     BeaconWait = 5; // 5 seconds for very low altitudes
-//   } else if (gps.altitude.feet() < 3000) {
-//     BeaconWait = 10; // 10 seconds for medium altitudes
-//   } else {
-//     BeaconWait = 35; // 35 seconds for high altitudes
-//   }
-// }
-
 
 // more sensible wait times?, can change if needed:
 void adjustBeaconWaitBasedOnAltitude() {
