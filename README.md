@@ -92,7 +92,6 @@ Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If 
 You are almost ready to programme LightAPRS Tracker :)
 
 - First download the repository to your computer using the green "[clone or download](https://github.com/VIP-LES/EosLightAPRS/archive/master.zip)" button.
-- We will use the items in the "LightAPRS-hab" folder, not the "LightAPRS-pico-balloon" or "LightAPRS-vehicle" folders. 
 - You will notice some folders in the "libraries" folder. You have to copy these folders (libraries) into your Arduino libraries folder on your computer. Path to your Arduino libraries:
 - **Windows** : This PC\Documents\Arduino\libraries\
 - **Mac** : /Users/\<username\>/Documents/Arduino/libraries/ <img src="images/lightaprs-library-copy.png" width="600">  
@@ -114,41 +113,4 @@ You are almost ready to programme LightAPRS Tracker :)
 
 - Click **Upload**
 - Your tracker is ready to launch :)
- 
-## Support
 
-If you have any questions or need support, please contact support@lightaprs.com
-
-## FAQ
-
-**Q. I'm interested in pico balloon flights but I have no experience. What kind of balloon, solar panel, capacitor, etc. should I use?**
-
-A. Please check out our wiki page Tips & Tricks for Pico Balloons:  https://github.com/lightaprs/LightAPRS-1.0/wiki/Tips-&-Tricks-for-Pico-Balloons
-
-[![](http://img.youtube.com/vi/0Y5F734GSuE/0.jpg)](http://www.youtube.com/watch?v=0Y5F734GSuE "MDM-3 Assembly, Fill & Launch")
-
-**Q. Do I need a permission to launch a pico balloon?**
-
-A. No you don't. Since pico balloons are very small and light, you are FAA 101 exempt. Please check out [this page](https://medium.com/loonar-technologies/faa-101-how-to-legally-get-your-high-altitude-balloon-to-near-space-742a0acf0c45) for detailed info.
-
-**Q. What kind of antenna do i need to use on LightAPRS?**
-
-A. You can use any type. For airborne projects (such as balloons, rockets, rc planes, drones, etc.) we suggest quarter wave monopole antenna because this makes your payload lighter. So just cut a light 50 cm. wire and solder it to the middle pad of the antenna footprint (A1). Since your payload is airborne and wavelength is 2 meters, you don't need a wire for ground.
-
-<img src="images/lightaprs-monopole-wire-antenna-connection.jpg" width="600">
-
-**Q. But I want to use a rubber duck antenna. Is it possible?**
-
-A. Yes. But you need a pcb type SMA connector (male or female) as follows:
-
-<img src="images/lightaprs-sma-antenna-connection.jpg" width="600">
-
-**Q. I would like to use it as a car tracker.  Is it possible to use an external antenna?**
-
-A. Yes. But you also need an "n" type connector (n to SMA) along with the SMA connector as follows:
-
-<img src="images/sma-to-type-n-connector.jpg" width="600">
-
-We have tested it with Midland NW-2000 and it worked fine :)
-
-<img src="images/lightaprs-external-antenna-connection.jpg" width="600">
