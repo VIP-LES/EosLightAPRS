@@ -54,14 +54,14 @@ The CH340 chip is used by a number of Arduino compatible boards (and by LightAPR
 Don't worry, it's really easy. Just download the following driver from sparkfun.com and install it.
 
 - [Windows](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER.EXE)
-- [Mac](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP)
+- [Mac](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP), if on an ARM based mac then use [this](https://www.wch-ic.com/downloads/CH341SER_MAC_ZIP.html).
 - [Linux](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_LINUX.ZIP)
 
 <img src="images/ch340-driver-install.png" width="500">
 
 ### 2.Install Arduino IDE
 
-Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If you have already installed Arduino, please check for updates. Its version should be v1.8.7 or newer.
+Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If you have already installed Arduino, please check for updates. Its version should be v1.8.7 or newer (The newer 2.x.x versions also work, no need to use the legacy 1.x.x versions).
 
 ### 3.Install MightyCore
 
@@ -91,8 +91,7 @@ Download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software). If 
 
 You are almost ready to programme LightAPRS Tracker :)
 
-- First download the repository to your computer using the green "[clone or download](https://github.com/lightaprs/LightAPRS-1.0/archive/master.zip)" button.
-- There are more than one Arduino projects optimized for different use cases. For example if you are planning to use LightAPRS tracker for a pico balloon project, then use "[LightAPRS-pico-balloon](LightAPRS-pico-balloon)" folder, for a hab (high altitude balloon)/weather balloon project, then use "[LightAPRS-hab](LightAPRS-hab)" folder.
+- First download the repository to your computer using the green "[clone or download](https://github.com/VIP-LES/EosLightAPRS/archive/master.zip)" button.
 - You will notice some folders in the "libraries" folder. You have to copy these folders (libraries) into your Arduino libraries folder on your computer. Path to your Arduino libraries:
 - **Windows** : This PC\Documents\Arduino\libraries\
 - **Mac** : /Users/\<username\>/Documents/Arduino/libraries/ <img src="images/lightaprs-library-copy.png" width="600">  
@@ -108,47 +107,10 @@ You are almost ready to programme LightAPRS Tracker :)
 
 - First attach an antenna (at least 50cm monopole wire) to your tracker. Radio module may be damaged if operated without attaching an antenna, since power has nowhere to go.
 - Connect LightAPRS Tracker to your computer with a micro USB cable.
-- If you have successfully installed the CH340G driver explained in the first step, you should see a COM port under **Tools->Port** menu item. Select that port.
+- If you have successfully installed the CH340G driver explained in the first step, you should see a COM port under **Tools->Port** menu item. Select that port (if you don't see a port but have the driver installed, make sure the APRS is connected with a cable that supports both data & power, not just power).
 
 <img src="images/lightaprs-arduino-port-select.png" width="600">  
 
 - Click **Upload**
 - Your tracker is ready to launch :)
- 
-## Support
 
-If you have any questions or need support, please contact support@lightaprs.com
-
-## FAQ
-
-**Q. I'm interested in pico balloon flights but I have no experience. What kind of balloon, solar panel, capacitor, etc. should I use?**
-
-A. Please check out our wiki page Tips & Tricks for Pico Balloons:  https://github.com/lightaprs/LightAPRS-1.0/wiki/Tips-&-Tricks-for-Pico-Balloons
-
-[![](http://img.youtube.com/vi/0Y5F734GSuE/0.jpg)](http://www.youtube.com/watch?v=0Y5F734GSuE "MDM-3 Assembly, Fill & Launch")
-
-**Q. Do I need a permission to launch a pico balloon?**
-
-A. No you don't. Since pico balloons are very small and light, you are FAA 101 exempt. Please check out [this page](https://medium.com/loonar-technologies/faa-101-how-to-legally-get-your-high-altitude-balloon-to-near-space-742a0acf0c45) for detailed info.
-
-**Q. What kind of antenna do i need to use on LightAPRS?**
-
-A. You can use any type. For airborne projects (such as balloons, rockets, rc planes, drones, etc.) we suggest quarter wave monopole antenna because this makes your payload lighter. So just cut a light 50 cm. wire and solder it to the middle pad of the antenna footprint (A1). Since your payload is airborne and wavelength is 2 meters, you don't need a wire for ground.
-
-<img src="images/lightaprs-monopole-wire-antenna-connection.jpg" width="600">
-
-**Q. But I want to use a rubber duck antenna. Is it possible?**
-
-A. Yes. But you need a pcb type SMA connector (male or female) as follows:
-
-<img src="images/lightaprs-sma-antenna-connection.jpg" width="600">
-
-**Q. I would like to use it as a car tracker.  Is it possible to use an external antenna?**
-
-A. Yes. But you also need an "n" type connector (n to SMA) along with the SMA connector as follows:
-
-<img src="images/sma-to-type-n-connector.jpg" width="600">
-
-We have tested it with Midland NW-2000 and it worked fine :)
-
-<img src="images/lightaprs-external-antenna-connection.jpg" width="600">
